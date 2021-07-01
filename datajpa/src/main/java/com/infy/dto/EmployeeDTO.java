@@ -6,6 +6,7 @@ public class EmployeeDTO {
 	    private String department;
 	    private String baseLocation;
 	    private Integer addressId;
+	    private Address address;
 	   // constructors
 	   // getter and setter methods
 	    
@@ -20,6 +21,17 @@ public class EmployeeDTO {
 		
 		public EmployeeDTO() {}
 		
+		public EmployeeDTO(long empId2, String empName2, String department2, String baseLocation2, Address address) {
+			// TODO Auto-generated constructor stub
+			super();
+			this.empId = empId;
+			this.empName = empName;
+			this.department = department;
+			this.baseLocation = baseLocation;
+			this.address=address;
+			
+		}
+
 		public Long getEmpId() {
 			return empId;
 		}
@@ -63,6 +75,11 @@ public class EmployeeDTO {
 		public void setAddress(Integer addressId) {
 			this.addressId = addressId;
 		}
+		
+
+		public void setAddress(Address address) {
+			this.address = address;
+		}
 
 		public static Employee prepareEmployeeEntity(EmployeeDTO employeeDTO) {
 			Employee employeeEntity=new Employee();
@@ -73,9 +90,10 @@ public class EmployeeDTO {
 			
 			employeeEntity.setAddressId(employeeDTO.getAddress());
 			employeeEntity.setBaseLocation(employeeDTO.getBaseLocation());
-			
 			return employeeEntity;
 		}
+
+		
 	    
 
 }

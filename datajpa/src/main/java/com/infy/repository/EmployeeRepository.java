@@ -4,9 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface EmployeeRepository extends  JpaRepository<Employee,Long> {
-	public void insert(Employee employee);
-	
-	public void getAll(int empId);
+//	public void insert(Employee employee);
+//	
+//	public int remove(Long empId);
+//	
+//	public void getAll(Long empId);
 
 
 }

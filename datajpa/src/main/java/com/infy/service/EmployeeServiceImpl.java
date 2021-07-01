@@ -1,8 +1,12 @@
 package com.infy.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.infy.dto.EmployeeDTO;
@@ -23,33 +27,52 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 
+	
+	
+	//pagination
 	@Override
-	public EmployeeDTO getEmployee(long empId) {
+	public Page<Employee> findAll(Pageable page) {
 		// TODO Auto-generated method stub
-		Optional<Employee> employee=employeeRepository.findById((long) empId);
-		Employee employeeEntity=employee.get();
-		EmployeeDTO employeeDTO=Employee.prepareEmployeeDTO(employeeEntity);
-		
-		return employeeDTO;
+		return employeeRepository.findAll(page);
 	}
 
 	@Override
-	public void removeEmployee(long empId) {
+	public List<Employee> findAll(Sort sort) {
 		// TODO Auto-generated method stub
-		employeeRepository.deleteById(empId);
-		
+		return employeeRepository.findAll(sort);
 	}
 
-	@Override
-	public String updateAddress(long empId, Address address) {
-		// TODO Auto-generated method stub
-		Optional<Employee> employee=employeeRepository.findById(empId);
-		Employee employeeEntity=employee.get();
-		
-		employeeEntity.setAddressId(456);
-		employeeEntity.setAddressId(567);
-		employeeRepository.save(employeeEntity);
-		return "Address for the employee " +empId+ " has been updated successfully";
-	}
+	
+	
+	
+	//crud
+	
+//	@Override
+//	public EmployeeDTO getEmployee(long empId) {
+//		// TODO Auto-generated method stub
+//		Optional<Employee> employee=employeeRepository.findById((long) empId);
+//		Employee employeeEntity=employee.get();
+//		EmployeeDTO employeeDTO=Employee.prepareEmployeeDTO(employeeEntity);
+//		
+//		return employeeDTO;
+//	}
+//
+//	@Override
+//	public void removeEmployee(long empId) {
+//		// TODO Auto-generated method stub
+//		employeeRepository.deleteById(empId);
+//		
+//	}
+//
+//	@Override
+//	public String updateAddress(long empId, Address address) {
+//		// TODO Auto-generated method stub
+//		Optional<Employee> employee=employeeRepository.findById(empId);
+//		Employee employeeEntity=employee.get();
+//		employeeEntity.setAddressId(456);
+//		employeeEntity.setAddressId(567);
+//		employeeRepository.save(employeeEntity);
+//		return "Address for the employee " +empId+ " has been updated successfully";
+//	}
 
 }
