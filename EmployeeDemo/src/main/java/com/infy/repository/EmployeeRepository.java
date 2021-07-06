@@ -30,8 +30,9 @@ public class EmployeeRepository {
 	
 	
 	//adds the emp 
-	public void createEmployee(EmployeeDTO employeeDTO) {
+	public String createEmployee(EmployeeDTO employeeDTO) {
 		employees.add(employeeDTO);
+		return "Employee Details added..";
 	}
 	//to fetch emp
 	public List<EmployeeDTO> fetchEmployee(){
@@ -39,8 +40,8 @@ public class EmployeeRepository {
 	}
 	
 	//to update
-	public String updateEmployee(int empId,EmployeeDTO employeeDTO) {
-		String response="Employee of: "+empId+"does not exists";
+	public boolean updateEmployee(int empId,EmployeeDTO employeeDTO) {
+		boolean response=false;
 		for(EmployeeDTO employee:employees) {
 			if(employee.getEmpId()==empId) {
 				if(employeeDTO.getEmpName()!=null) 
@@ -48,7 +49,8 @@ public class EmployeeRepository {
 					if(employeeDTO.getBaseLocation()!=null) 
 						employee.setBaseLocation(employeeDTO.getBaseLocation());
 					
-				response="employee with empID: "+employee.getEmpId()+" updated successfully";
+				response=true;
+				break;
 			}
 		}
 		
@@ -58,22 +60,22 @@ public class EmployeeRepository {
 	
 	
 	//to delete
-	public String deleteEmployee(int empId) throws NoSuchEmpException {
+	public boolean deleteEmployee(int empId) throws NoSuchEmpException {
 //		employees.remove(employee);
-		boolean notfound=true;
-		String response="Employee with: "+empId+" does not exists";
+		boolean response=false;
+		
 		for(EmployeeDTO employee:employees) {
 			if(employee.getEmpId()==empId) {
 				employees.remove(employee);
-				response="Employee with: "+employee.getEmpId()+" deleted successfully";
-				notfound=false;
+				
+				response=true;
 				break;
 			}
 		}
-		if(notfound) {
-			throw new NoSuchEmpException("Employee with: "+empId+" does not exists");
-			
-		}
+//		if(response) {
+//			throw new NoSuchEmpException("Employee with: "+empId+" does not exists");
+//			
+//		}
 		return response;
 	}
 

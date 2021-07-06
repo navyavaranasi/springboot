@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import com.infy.service.*;
 
 @RestController
 @RequestMapping("/employees")
+@Validated
 public class EmployeeController {
 
 	@Autowired
@@ -38,25 +40,17 @@ public class EmployeeController {
 	
 	//to add emp
 	@PostMapping(consumes="application/json")
-	public ResponseEntity createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO,Errors err){
-		String response="";
-		if(err.hasErrors()) {
-			response=err.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining(","));
-				ErrorMessage errMsg=new ErrorMessage();
-				errMsg.setErrorCode(HttpStatus.NOT_ACCEPTABLE.value());
-				errMsg.setMessage(response);
-				return ResponseEntity.ok(errMsg);
-		}
-		else {
-	     response=employeeService.createEmployee(employeeDTO);
+	public ResponseEntity<String> createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO,Errors err){
+		
+	    String response=employeeService.createEmployee(employeeDTO);
 		return ResponseEntity.ok(response);
-		}
+		
 	}
 	
 	
 	//to update emp
 	@PutMapping(value="/{empId}",consumes="application/json")
-	public String updateEmployee(@PathVariable("empId")int empId,@RequestBody EmployeeDTO employeeDTO)
+	public String updateEmployee(@PathVariable("empId")int empId,@RequestBody EmployeeDTO employeeDTO) throws NoSuchEmpException
 	{
 		return employeeService.updateEmployee(empId, employeeDTO);
 	}

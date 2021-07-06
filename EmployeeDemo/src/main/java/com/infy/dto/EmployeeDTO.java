@@ -1,9 +1,13 @@
 package com.infy.dto;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
+@Validated
 public class EmployeeDTO {
   
+	@NotNull(message="{employee.empId.must}")
 	private int empId;
-	@NotNull(message="Name cannot be null")
+	@NotNull(message="{employee.empName.must}")
     private String empName;
 	private String department;
 	private String baseLocation;
