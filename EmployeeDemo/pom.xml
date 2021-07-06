@@ -28,6 +28,11 @@
             <groupId>org.springframework.boot</groupId> 
             <artifactId>spring-boot-starter-validation</artifactId> 
         </dependency>
+        <!-- security depend -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
         <!--swagger depend  -->
         <dependency>
       			<groupId>io.springfox</groupId>
