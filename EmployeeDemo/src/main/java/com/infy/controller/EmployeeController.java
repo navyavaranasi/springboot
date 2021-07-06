@@ -33,13 +33,13 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	//to get emp details
-	@GetMapping(produces="application/json")
+	@GetMapping(value="/getemployee",produces="application/json")
 	public List<EmployeeDTO> fetchEmployee(){
 		return employeeService.fetchEmployee();
 	}
 	
 	//to add emp
-	@PostMapping(consumes="application/json")
+	@PostMapping(value="/",consumes="application/json")
 	public ResponseEntity<String> createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO,Errors err){
 		
 	    String response=employeeService.createEmployee(employeeDTO);
