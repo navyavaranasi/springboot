@@ -16,6 +16,12 @@ public class EmployeeRepository {
 	
 	@PostConstruct
 	public void initializer() {
+		
+		TrainingDTO training=new TrainingDTO(); 
+		
+		training.setCourseId(1);
+		training.setCourseName("Java");
+		employees=new ArrayList<>();
 		EmployeeDTO employeeDTO=new EmployeeDTO();
 		employeeDTO.setEmpId(101);
 		employeeDTO.setEmpName("Betty");
@@ -23,8 +29,21 @@ public class EmployeeRepository {
 		employeeDTO.setBaseLocation("Bangalore");
 		employeeDTO.setEmployeeSalary(25000.00);
 		employeeDTO.setEmployeeContactNumber(9807645321L);
-		employees=new ArrayList<>();
+		employeeDTO.setTraining(training);
 		employees.add(employeeDTO);
+        TrainingDTO training1=new TrainingDTO(); 
+		
+		training1.setCourseId(1);
+		training1.setCourseName("Java");  
+		EmployeeDTO employeeDTO2=new EmployeeDTO();
+		employeeDTO2.setEmpId(102);
+		employeeDTO2.setEmpName("Jake");
+		employeeDTO2.setDepartment("ETA");
+		employeeDTO2.setBaseLocation("Chennai");
+		employeeDTO2.setEmployeeSalary(28000.00);
+		employeeDTO2.setEmployeeContactNumber(6758904321L);
+		employeeDTO2.setTraining(training1);
+		employees.add(employeeDTO2);
 		
 	}
 	
@@ -38,6 +57,8 @@ public class EmployeeRepository {
 	public List<EmployeeDTO> fetchEmployee(){
 		return employees;
 	}
+	
+//	public EmployeeDTO fetch
 	
 	//to update
 	public boolean updateEmployee(int empId,EmployeeDTO employeeDTO) {

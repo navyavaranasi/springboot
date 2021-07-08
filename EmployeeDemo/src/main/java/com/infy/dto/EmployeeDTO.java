@@ -1,4 +1,5 @@
 package com.infy.dto;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
@@ -7,12 +8,13 @@ public class EmployeeDTO {
   
 	@NotNull(message="{employee.empId.must}")
 	private int empId;
-	@NotNull(message="{employee.empName.must}")
+	@NotBlank(message="{employee.empName.must}")
     private String empName;
 	private String department;
 	private String baseLocation;
 	private double employeeSalary;
-	private long employeeContactNumber;
+	private long employeeContactNumber; 
+	private TrainingDTO training;
 	
 	
 	public int getEmpId() {
@@ -52,12 +54,20 @@ public class EmployeeDTO {
 	public void setEmployeeContactNumber(long employeeContactNumber) {
 		this.employeeContactNumber = employeeContactNumber;
 	}
+	
+	public TrainingDTO getTraining() {
+		return training;
+	}
+	public void setTraining(TrainingDTO training) {
+		this.training = training;
+	}
 	@Override
 	public String toString() {
 		return "EmployeeDTO [empId=" + empId + ", empName=" + empName + ", department=" + department + ", baseLocation="
 				+ baseLocation + ", employeeSalary=" + employeeSalary + ", employeeContactNumber="
-				+ employeeContactNumber + "]";
+				+ employeeContactNumber + ", training=" + training + "]";
 	}
+	
 	
 	
 }

@@ -12,7 +12,7 @@ import com.infy.util.*;
 
 
 @Service
-@PropertySource("classpath:Validations.properties")
+@PropertySource("classpath:ValidationsMessages.properties")
 public class EmployeeService {
 
 	

@@ -22,11 +22,11 @@ import javax.validation.ConstraintViolation;
 public class ExceptionControllerAdvice {
 	@Autowired
 	private Environment environment;
-	
-//     @ExceptionHandler(Exception.class)
-//     public String exceptionHandler(Exception e) {
-//    	 return e.getMessage();
-//     }
+//	
+//    @ExceptionHandler(Exception.class)
+//    public String exceptionHandler(Exception e) {
+//   	 return e.getMessage();
+//    }
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorMessage> exceptionHandler2(Exception ex) 
  	{
